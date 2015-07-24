@@ -45,6 +45,7 @@ class WPEMS_Admin {
         add_submenu_page( 'wpems-admin-opt', __( 'Class', 'wp-ems' ), __( 'Class', 'wp-ems' ), $capability, 'wpems-class', array( $this, 'load_class_views') );
         add_submenu_page( 'wpems-admin-opt', __( 'Subject', 'wp-ems' ), __( 'Subject', 'wp-ems' ), $capability, 'wpems-subject', array( $this, 'load_subject_views') );
         add_submenu_page( 'wpems-admin-opt', __( 'Routine', 'wp-ems' ), __( 'Routine', 'wp-ems' ), $capability, 'wpems-routine', array( $this, 'load_routine_views') );
+        add_submenu_page( 'wpems-admin-opt', __( 'Attendence', 'wp-ems' ), __( 'Attendence', 'wp-ems' ), $capability, 'wpems-attendence', array( $this, 'load_attendence_views') );
 
     }
 
@@ -140,6 +141,17 @@ class WPEMS_Admin {
         } else {
             require_once WP_EMS_VIEW_DIR . '/routine/main.php';
         }
+    }
+
+    public function load_attendence_views() {
+        $actions = isset( $_GET['action'] ) ? $_GET['action'] : '';
+
+        if ( $actions == 'take_attendence' ) {
+            require_once WP_EMS_VIEW_DIR . '/attendence/new-attendence.php';
+        } else {
+            require_once WP_EMS_VIEW_DIR . '/attendence/attendence.php';
+        }
+
     }
 
 }
